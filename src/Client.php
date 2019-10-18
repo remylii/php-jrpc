@@ -2,25 +2,21 @@
 
 namespace JRpc;
 
-use GuzzleHttp\Client as GuzzleClient;
 use JRpc\Lib\Logger;
 
-class Client
+class Client extends \JRpc\AbstractClient
 {
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    private $client;
-
-    public function __construct()
+    public function request(string $endpoint, string $method, ?array $params = [], ?string $id = null)
     {
-        $this->client = new GuzzleClient();
-    }
+        try {
+            $res = $this->doRequest($endpoint, $method, $params, $id);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            Logger::debug($e);
+        } catch (\Throwable $e) {
+            Logger::error($e);
+        }
 
-    public function hello(): string
-    {
-        $str = "Hello, world!";
-        Logger::write($str);
-        return $str;
+        Logger::debug($res->getStatusCode());
+        return;
     }
 }
