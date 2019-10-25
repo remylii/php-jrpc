@@ -18,7 +18,7 @@ class Logger
 
         self::$log = new MonoLogger("jrpc");
         // path
-        $log_path = __DIR__ . "/../../logs/test.log";
+        $log_path = __DIR__ . "/../../logs/error.log";
 
         $handler = new StreamHandler($log_path, MonoLogger::DEBUG);
         self::$log->pushHandler($handler);

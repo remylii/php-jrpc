@@ -4,6 +4,7 @@ namespace JRpc;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Ramsey\Uuid\Uuid;
+use JRpc\Response;
 
 abstract class AbstractClient
 {
@@ -19,9 +20,10 @@ abstract class AbstractClient
         $this->client = new GuzzleClient();
     }
 
-    protected function doRequest(string $endpoint, string $method, array $params, ?string $id)
+    protected function doRequest(string $endpoint, string $method, array $params, ?string $id): Response
     {
-        return $this->client->request('POST',
+        $res = $this->client->request(
+            'POST',
             $endpoint,
             [
                 "timeout" => self::TIMEOUT,
@@ -33,5 +35,9 @@ abstract class AbstractClient
                 ],
             ]
         );
+
+        \JRpc\Lib\Logger::debug("", json_decode($res->getBody(), true));
+
+        return new response($res);
     }
 }

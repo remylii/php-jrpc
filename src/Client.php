@@ -9,14 +9,17 @@ class Client extends \JRpc\AbstractClient
     public function request(string $endpoint, string $method, ?array $params = [], ?string $id = null)
     {
         try {
-            $res = $this->doRequest($endpoint, $method, $params, $id);
+            $response = $this->doRequest($endpoint, $method, $params, $id);
+
+            var_dump($response);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            Logger::debug($e);
+            Logger::error($e);
+            throw $e;
         } catch (\Throwable $e) {
             Logger::error($e);
+            throw $e;
         }
 
-        Logger::debug($res->getStatusCode());
-        return;
+        return $response;
     }
 }
