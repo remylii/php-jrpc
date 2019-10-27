@@ -3,9 +3,12 @@
 namespace JRpc;
 
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use JRpc\Validator\JsonValidatorInterface;
 
-class Response
+class Response implements JsonValidatorInterface
 {
+    use \JRpc\Validator\JsonValidatorTrait;
+
     private $status_code;
     private $headers;
     private $body;
@@ -18,9 +21,8 @@ class Response
         $this->body = $res->getBody();
         $this->contents = json_decode($res->getBody());
 
-        if (json_last_error() != JSON_ERROR_NONE) {
-            // error
-        }
+        // @TODO
+        $this->jsonValidate();
     }
 
     public function getJsonrpcVersion()
