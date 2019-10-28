@@ -19,24 +19,37 @@ class Response implements JsonValidatorInterface
         $this->status_code = $res->getStatusCode();
         $this->headers = $res->getHeaders();
         $this->body = $res->getBody();
-        $this->contents = json_decode($res->getBody());
 
         // @TODO
         $this->jsonValidate();
     }
 
+    private function setContents()
+    {
+        $this->contents = json_decode($this->body);
+    }
+
     public function getJsonrpcVersion()
     {
+        if (!$this->contents) {
+            $this->setContents();
+        }
         return $this->contents->jsonrpc;
     }
 
     public function getId()
     {
+        if (!$this->contents) {
+            $this->setContents();
+        }
         return $this->contents->id;
     }
 
-    public function getContents()
+    public function getResult()
     {
+        if (!$this->contents) {
+            $this->setContents();
+        }
         return $this->contents->result;
     }
 
