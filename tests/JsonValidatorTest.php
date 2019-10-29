@@ -5,7 +5,7 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use JRpc\Client;
 
-class ResponseTest extends TestCase
+class JsonValidatorTest extends TestCase
 {
     /**
      * @dataProvider jsonValidateProvider
