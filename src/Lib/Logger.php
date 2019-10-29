@@ -28,43 +28,43 @@ class Logger
     public static function emergency($message, $context = [])
     {
         self::init();
-        return self::$log->debug($message, $context);
+        return self::$log->emergency($message, $context);
     }
 
     public static function alert($message, $context = [])
     {
         self::init();
-        return self::$log->debug($message, $context);
+        return self::$log->alert($message, $context);
     }
 
     public static function critical($message, $context = [])
     {
         self::init();
-        return self::$log->debug($message, $context);
+        return self::$log->critical($message, $context);
     }
 
     public static function error($message, $context = [])
     {
         self::init();
-        return self::$log->debug($message, $context);
+        return self::$log->error($message, $context);
     }
 
     public static function warning($message, $context = [])
     {
         self::init();
-        return self::$log->debug($message, $context);
+        return self::$log->warning($message, $context);
     }
 
     public static function notice($message, $context = [])
     {
         self::init();
-        return self::$log->debug($message, $context);
+        return self::$log->notice($message, $context);
     }
 
     public static function info($message, $context = [])
     {
         self::init();
-        return self::$log->debug($message, $context);
+        return self::$log->info($message, $context);
     }
 
     public static function debug($message, $context = [])

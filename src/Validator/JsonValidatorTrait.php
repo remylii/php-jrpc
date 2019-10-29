@@ -1,12 +1,12 @@
 <?php
 namespace JRpc\Validator;
 
-use JRpc\Exception\ResponseFailureException;
+use JRpc\Exception\InvalidJsonFormatException;
 
 trait JsonValidatorTrait
 {
     /**
-     * @throws ResponseFailureException
+     * @throws InvalidJsonFormatException
      */
     public function jsonValidate()
     {
@@ -33,7 +33,7 @@ trait JsonValidatorTrait
                     break;
             }
 
-            throw new ResponseFailureException($msg);
+            throw new InvalidJsonFormatException($msg);
         }
 
         return true;

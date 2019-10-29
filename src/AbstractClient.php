@@ -4,7 +4,7 @@ namespace JRpc;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Ramsey\Uuid\Uuid;
-use JRpc\Response;
+use JRpc\Response\Response;
 
 abstract class AbstractClient
 {

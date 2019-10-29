@@ -26,7 +26,7 @@ class JsonValidatorTest extends TestCase
     {
         return [
             "JSON_ERROR_SYNTAX" => [
-                \JRpc\Exception\ResponseFailureException::class, "JSON_ERROR_SYNTAX", "string"
+                \JRpc\Exception\InvalidJsonFormatException::class, "JSON_ERROR_SYNTAX", "string"
             ],
         ];
     }
